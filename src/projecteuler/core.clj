@@ -49,6 +49,11 @@
   What is the 10 001st prime number?"
   (nth  (filter prime? (range)) (- n 1) ))
 
+(defn problem008 [s]
+  "Find the greatest product of five consecutive digits in the 1000-digit number. (see Test)"
+  (def number-list (num-string-to-list-nums s))
+  (apply max (convert-list number-list * 5)))
+
 (defn problem010 [n]
   "The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
   Find the sum of all the primes below two million."
@@ -65,3 +70,38 @@
   and the sum of the digits in the number 10! is 3 + 6 + 2 + 8 + 8 + 0 + 0 = 27.
   Find the sum of the digits in the number 100!"
   (sum-digits (str (factorial n))))
+
+(defn problem009 [x]
+  (first (for [a (range 1 x)
+               b (range a x)
+               c [(max 0 (- x a b))]
+               :when (= (* c c) (+ (* a a) (* b b)))]
+           (* a b c))))
+
+(defn problem021 []
+  (reduce + (filter amicable? (range 2 10000))))
+
+(defn problem036 []
+  (reduce + (filter #(palindrome-base10-and-base2? %) (range 1000000))))
+
+(defn problem049 []
+  (for [x (filter prime? (range 1000 9999))
+        y (filter prime? (range 1000 9999))
+        z (filter prime? (range 1000 9999))
+        :when (cond
+               (not= x y z) (cond
+                             (= (sort (str x)) (sort (str y)) (sort (str z))) (= (- y x) (- z y))
+                             :else false)
+               :else false)]
+    (println x y z)))
+
+(defn problem052 []
+  (first (for [x (range 1 99999999999999999)
+               :let [ onex  (sort (str x))
+                     twox   (sort (str (* x 2)))
+                     threex (sort (str (* x 3)))
+                     fourx  (sort (str (* x 4)))
+                     fivex  (sort (str (* x 5)))
+                     sixx   (sort (str (* x 6)))]
+               :when (= onex twox threex fourx fivex sixx)]
+           x)))

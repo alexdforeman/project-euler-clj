@@ -44,3 +44,30 @@
 (defn product-digits [s]
   "Gets the digits in a string and multiplys them"
   (reduce * (map #(Integer/parseInt (str %)) s)))
+
+(defn num-string-to-list-nums [s]
+  (cond
+   (= (count s) 0) '()
+   :else  (cons (Integer/parseInt (Character/toString (first s)) )
+                (num-string-to-list-nums (rest s)))))
+
+(defn convert-list [list function cons-digits]
+  (cond
+   (< (count list) cons-digits) '()
+   :else (cons (reduce function (take cons-digits list)) (convert-list (rest list) function cons-digits))))
+
+(defn divisors [n]
+  (for [x (range 1 n)
+        :let [y (mod n x)]
+        :when (zero? y)]
+    x))
+
+(defn amicable? [n]
+  (let [sumDiv (reduce + (divisors n))
+        sumDiv2 (reduce + (divisors sumDiv))]
+    (= (= sumDiv2 n) (not=  n sumDiv))))
+
+(defn palindrome-base10-and-base2? [n]
+  (cond
+   (palindrome? n) (palindrome? (Integer/toBinaryString n))
+   :else false))
