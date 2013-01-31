@@ -30,7 +30,7 @@
   (is (= 40824 (problem008 problem008-number))))
 
 (deftest test-problem009
-  (println (problem009 1000)))
+  (is (= 31875000 (problem009 1000))))
 
 (deftest test-problem010
   (is (= 142913828922 (problem010 2000000))))
@@ -42,13 +42,13 @@
   (is (= 648 (problem020 100))))
 
 (deftest test-problem021
-  (println (problem021)))
+  (is (= 31626 (problem021))))
 
 (deftest test-problem036
-  (println (problem036)))
+  (is (= 872187 (problem036))))
 
 (deftest test-problem049
-  (println (problem049)))
+  (is (= [2969 6299 9629] (problem049))))
 
 (deftest test-problem052
-  (println (problem052)))
+  (is (= 142857 (problem052))))

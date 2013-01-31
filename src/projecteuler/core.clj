@@ -72,6 +72,11 @@
   (sum-digits (str (factorial n))))
 
 (defn problem009 [x]
+  "A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
+   a2 + b2 = c2
+   For example, 32 + 42 = 9 + 16 = 25 = 52.
+   There exists exactly one Pythagorean triplet for which a + b + c = 1000.
+   Find the product abc."
   (first (for [a (range 1 x)
                b (range a x)
                c [(max 0 (- x a b))]
@@ -79,23 +84,36 @@
            (* a b c))))
 
 (defn problem021 []
+  "Let d(n) be defined as the sum of proper divisors of n (numbers less than n which divide evenly into n).
+   If d(a) = b and d(b) = a, where a ≠ b, then a and b are an amicable pair and each of a and b are called amicable numbers.
+   For example, the proper divisors of 220 are 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 and 110; therefore d(220) = 284. The proper divisors of 284 are 1, 2, 4, 71 and 142; so d(284) = 220.
+   Evaluate the sum of all the amicable numbers under 10000."
   (reduce + (filter amicable? (range 2 10000))))
 
 (defn problem036 []
+  "The decimal number, 585 = 10010010012 (binary), is palindromic in both bases.
+   Find the sum of all numbers, less than one million, which are palindromic in base 10 and base 2.
+   (Please note that the palindromic number, in either base, may not include leading zeros.)"
   (reduce + (filter #(palindrome-base10-and-base2? %) (range 1000000))))
 
 (defn problem049 []
-  (for [x (filter prime? (range 1000 9999))
-        y (filter prime? (range 1000 9999))
-        z (filter prime? (range 1000 9999))
-        :when (cond
-               (not= x y z) (cond
-                             (= (sort (str x)) (sort (str y)) (sort (str z))) (= (- y x) (- z y))
-                             :else false)
-               :else false)]
-    (println x y z)))
+  "The arithmetic sequence, 1487, 4817, 8147, in which each of the terms increases by 3330, is unusual in two ways: (i) each of the three terms are prime, and, (ii) each of the 4-digit numbers are permutations of one another.
+   There are no arithmetic sequences made up of three 1-, 2-, or 3-digit primes, exhibiting this property, but there is one other 4-digit increasing sequence.
+   What 12-digit number do you form by concatenating the three terms in this sequence?"
+  (first
+   (for [x (filter prime? (range 2000 3000))
+         y (filter prime? (range 6000 7000))
+         z (filter prime? (range 9000 9999))
+         :when (cond
+                (not= x y z) (cond
+                              (= (sort (str x)) (sort (str y)) (sort (str z))) (= (- y x) (- z y))
+                              :else false)
+                :else false)]
+     [x y z])))
 
 (defn problem052 []
+  "It can be seen that the number, 125874, and its double, 251748, contain exactly the same digits, but in a different order.
+   Find the smallest positive integer, x, such that 2x, 3x, 4x, 5x, and 6x, contain the same digits."
   (first (for [x (range 1 99999999999999999)
                :let [ onex  (sort (str x))
                      twox   (sort (str (* x 2)))
