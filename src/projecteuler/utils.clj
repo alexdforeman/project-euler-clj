@@ -14,7 +14,7 @@
 
 (def fibs
   "Creates fibonnaci sequence"
-  (lazy-cat [0 1] (map + fibs (rest fibs))))
+  (lazy-cat [(BigInteger. "0") (BigInteger. "1")] (map + fibs (rest fibs))))
 
 (defn square-of-sum [n]
   "Squares the sum of the number"

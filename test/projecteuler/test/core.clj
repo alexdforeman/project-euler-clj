@@ -50,6 +50,10 @@
 (deftest test-problem021
   (is (= 31626 (problem021))))
 
+(deftest test-problem025
+  (is (= 4782 (problem025)))
+)
+
 (deftest test-problem036
   (is (= 872187 (problem036))))
 

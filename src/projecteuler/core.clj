@@ -1,6 +1,7 @@
 (ns projecteuler.core
   (:use projecteuler.utils)
   (:use clojure.contrib.math)
+  (:use [clojure.contrib.seq-utils :only [find-first indexed] ])
   )
 
 (defn problem001 []
@@ -56,6 +57,18 @@
   (def number-list (num-string-to-list-nums s))
   (apply max (convert-list number-list * 5)))
 
+(defn problem009 [x]
+  "A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
+   a2 + b2 = c2
+   For example, 32 + 42 = 9 + 16 = 25 = 52.
+   There exists exactly one Pythagorean triplet for which a + b + c = 1000.
+   Find the product abc."
+  (first (for [a (range 1 x)
+               b (range a x)
+               c [(max 0 (- x a b))]
+               :when (= (* c c) (+ (* a a) (* b b)))]
+           (* a b c))))
+
 (defn problem010 [n]
   "The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
   Find the sum of all the primes below two million."
@@ -84,24 +97,21 @@
   Find the sum of the digits in the number 100!"
   (sum-digits (str (factorial n))))
 
-(defn problem009 [x]
-  "A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
-   a2 + b2 = c2
-   For example, 32 + 42 = 9 + 16 = 25 = 52.
-   There exists exactly one Pythagorean triplet for which a + b + c = 1000.
-   Find the product abc."
-  (first (for [a (range 1 x)
-               b (range a x)
-               c [(max 0 (- x a b))]
-               :when (= (* c c) (+ (* a a) (* b b)))]
-           (* a b c))))
-
 (defn problem021 []
   "Let d(n) be defined as the sum of proper divisors of n (numbers less than n which divide evenly into n).
    If d(a) = b and d(b) = a, where a ≠ b, then a and b are an amicable pair and each of a and b are called amicable numbers.
    For example, the proper divisors of 220 are 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 and 110; therefore d(220) = 284. The proper divisors of 284 are 1, 2, 4, 71 and 142; so d(284) = 220.
    Evaluate the sum of all the amicable numbers under 10000."
   (reduce + (filter amicable? (range 2 10000))))
+
+(defn problem025 []
+  "The Fibonacci sequence is defined by the recurrence relation:
+   Fn = Fn−1 + Fn−2, where F1 = 1 and F2 = 1.
+
+   The 12th term, F12, is the first term to contain three digits.
+   F12 = 144
+   What is the first term in the Fibonacci sequence to contain 1000 digits?"
+  (first (find-first #(>= (count (str (second %))) 1000) (indexed fibs))) )
 
 (defn problem036 []
   "The decimal number, 585 = 10010010012 (binary), is palindromic in both bases.
