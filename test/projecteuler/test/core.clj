@@ -51,11 +51,14 @@
   (is (= 31626 (problem021))))
 
 (deftest test-problem025
-  (is (= 4782 (problem025)))
-)
+  (is (= 4782 (problem025))))
 
 (deftest test-problem036
   (is (= 872187 (problem036))))
+
+(deftest test-problem048
+  (is (= "9110846700" (problem048 1000)))
+  )
 
 (deftest test-problem049
   (is (= [2969 6299 9629] (problem049))))

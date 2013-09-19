@@ -119,6 +119,13 @@
    (Please note that the palindromic number, in either base, may not include leading zeros.)"
   (reduce + (filter #(palindrome-base10-and-base2? %) (range 1000000))))
 
+
+(defn problem048 [n]
+  "The series, 1^1 + 2^2 + 3^3 + ... + 10^10 = 10405071317.
+   Find the last ten digits of the series, 1^1 + 2^2 + 3^3 + ... + 1000^1000."
+  (apply str (reverse (take 10 (reverse
+                                (str (reduce + (map #(.pow (BigInteger. (str %)) %) (range 1 (inc n))))))))))
+
 (defn problem049 []
   "The arithmetic sequence, 1487, 4817, 8147, in which each of the terms increases by 3330, is unusual in two ways: (i) each of the three terms are prime, and, (ii) each of the 4-digit numbers are permutations of one another.
    There are no arithmetic sequences made up of three 1-, 2-, or 3-digit primes, exhibiting this property, but there is one other 4-digit increasing sequence.
