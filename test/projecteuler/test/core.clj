@@ -41,6 +41,9 @@
 (deftest test-problem015
   (is (= 137846528820  (problem015))))
 
+(deftest test-problem016
+  (is (= 1366 (problem016))))
+
 (deftest test-problem020
   (is (= 648 (problem020 100))))
 

@@ -1,5 +1,7 @@
 (ns projecteuler.core
-  (:use projecteuler.utils))
+  (:use projecteuler.utils)
+  (:use clojure.contrib.math)
+  )
 
 (defn problem001 []
   "If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9.
@@ -68,6 +70,12 @@
   "Starting in the top left corner of a 2×2 grid, there are 6 routes (without backtracking) to the bottom right corner.
   How many routes are there through a 20×20 grid?"
   (grid-combinations 20 20))
+
+(defn problem016 []
+  "215 = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.
+   What is the sum of the digits of the number 2 ^ 1000"
+  (sum-digits (str (.pow (BigInteger. "2") 1000)))
+  )
 
 (defn problem020 [n]
   "n! means n × (n − 1) × ... × 3 × 2 × 1
