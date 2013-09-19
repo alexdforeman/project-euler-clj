@@ -59,6 +59,11 @@
   Find the sum of all the primes below two million."
   (reduce + (filter prime? (range n))))
 
+(defn problem012 []
+  "What is the value of the first triangle number to have over five hundred divisors?"
+  (first (drop-while #(<= (num-of-divisors %) 500) triangles))
+  )
+
 (defn problem015 []
   "Starting in the top left corner of a 2×2 grid, there are 6 routes (without backtracking) to the bottom right corner.
   How many routes are there through a 20×20 grid?"

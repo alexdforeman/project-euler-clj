@@ -1,4 +1,5 @@
-(ns projecteuler.utils)
+(ns projecteuler.utils
+    (:use [clojure.contrib.math]))
 
 (defn prime?
   "Discovers if the number is a prime number"
@@ -71,3 +72,11 @@
   (cond
    (palindrome? n) (palindrome? (Integer/toBinaryString n))
    :else false))
+
+(defn triangleNumber [n]
+  (* n (/ (+ n 1) 2)))
+
+(def triangles (map triangleNumber (iterate inc 1)))
+
+(defn num-of-divisors [n]
+  (* 2 (count (filter #(= (mod n %) 0) (range 2 (inc (int (sqrt n))))))))
