@@ -1,7 +1,8 @@
 (ns projecteuler.test.core
   (:use [projecteuler.core])
   (:use [projecteuler.utils])
-  (:use [clojure.test]))
+  (:use [clojure.test])
+  )
 
 (deftest test-problem001
   (is (= 233168 (problem001))))
@@ -35,6 +36,9 @@
 (deftest test-problem010
   (is (= 142913828922 (problem010 2000000))))
 
+(deftest test-problem011 []
+  (is (= 70600674 (problem011))))
+
 (deftest test-problem012
   (is (= 76576500 (problem012))))
 
@@ -57,8 +61,7 @@
   (is (= 872187 (problem036))))
 
 (deftest test-problem048
-  (is (= "9110846700" (problem048 1000)))
-  )
+  (is (= "9110846700" (problem048 1000))))
 
 (deftest test-problem049
   (is (= [2969 6299 9629] (problem049))))

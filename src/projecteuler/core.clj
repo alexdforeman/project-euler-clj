@@ -74,6 +74,13 @@
   Find the sum of all the primes below two million."
   (reduce + (filter prime? (range n))))
 
+(defn problem011 []
+  "In the 20×20 grid below, four numbers along a diagonal line have been marked in red.
+
+   * Grid removed for brevity and is in utils.clj
+   What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally)   in the 20×20 grid?"
+  (reduce max (map max-product-group (gen-all-matrixs problem-011-matrix))))
+
 (defn problem012 []
   "What is the value of the first triangle number to have over five hundred divisors?"
   (first (drop-while #(<= (num-of-divisors %) 500) triangles))
