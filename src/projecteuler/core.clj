@@ -2,6 +2,7 @@
   (:use projecteuler.utils)
   (:use clojure.contrib.math)
   (:use [clojure.contrib.seq-utils :only [find-first indexed] ])
+  (:use [clojure.string :only [split] :as cs])
   )
 
 (defn problem001 []
@@ -84,6 +85,12 @@
 (defn problem012 []
   "What is the value of the first triangle number to have over five hundred divisors?"
   (first (drop-while #(<= (num-of-divisors %) 500) triangles))
+  )
+
+(defn problem013 []
+  "Work out the first ten digits of the sum of the following one-hundred 50-digit numbers.
+     * Note: slurped in from file."
+  (reduce + (map #(BigInteger. %) (cs/split (slurp "test/projecteuler/resources/problem012.txt") #"\n")))
   )
 
 (defn problem015 []
