@@ -135,3 +135,18 @@
             (gen-matrix-diagonals m)
             (gen-matrix-diagonals (map reverse m))
             ))
+
+(defn collatz
+  "Generates a collatz sequence:
+   this follows the rules:
+   n → n/2 (n is even)
+   n → 3n + 1 (n is odd)"
+  ([n] (collatz n []))
+  ([n s]
+     (cond (= n 1) (conj s 1)
+           (and (even? n) (> n 0)) (recur (/ n 2) (conj s n))   ; Zero is even in clojure so need to check.
+           (odd? n) (recur (+ 1 (* 3 n)) (conj s n))
+           :else (throw (IllegalArgumentException. "Begining of a Collatz Sequence cannot be 0 or negative."))
+      )
+     )
+  )

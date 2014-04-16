@@ -93,6 +93,26 @@
   (reduce + (map #(BigInteger. %) (cs/split (slurp "test/projecteuler/resources/problem012.txt") #"\n")))
   )
 
+(defn problem014 []
+  "The following iterative sequence is defined for the set of positive integers:
+
+   * n → n/2 (n is even)
+   * n → 3n + 1 (n is odd)
+
+   Using the rule above and starting with 13, we generate the following sequence:
+       13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1
+
+   It can be seen that this sequence (starting at 13 and finishing at 1) contains 10 terms. Although it has not been    proved yet (Collatz Problem), it is thought that all starting numbers finish at 1.
+
+   Which starting number, under one million, produces the longest chain?
+
+   NOTE: Once the chain starts the terms are allowed to go above one million."
+
+  (def all-collatz (pmap #(collatz %) (range 800000 1000000))) ; Made the run shorter now I know what it is to run quicker
+  (def longest-in-range (reduce max (pmap #(count %) all-collatz)))
+  (first (first (filter #(= longest-in-range (count %))
+                        all-collatz))))
+
 (defn problem015 []
   "Starting in the top left corner of a 2×2 grid, there are 6 routes (without backtracking) to the bottom right corner.
   How many routes are there through a 20×20 grid?"

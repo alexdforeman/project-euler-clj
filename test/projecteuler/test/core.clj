@@ -43,7 +43,10 @@
   (is (= 76576500 (problem012))))
 
 (deftest test-problem013 []
-  (is (.equals "5537376230390876637302048746832985971773659831892672" (str (problem013)) ))
+  (is (.equals "5537376230390876637302048746832985971773659831892672" (str (problem013)))))
+
+(deftest test-problem014 []
+  (is (= 837799 (problem014)))
   )
 
 (deftest test-problem015
